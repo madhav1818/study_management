@@ -1,0 +1,47 @@
+{% extends 'study_management/base.html' %}
+{% load static %}
+
+{% block content %}
+<div style="background-color: #93a5d4; padding: 20px; min-height: 100vh; font-family: sans-serif;">
+    <h2 style="text-align: center; color: black;">Study Management</h2>
+    <form method="POST" action="{% url 'study_delete_multiple' %}">
+        {% csrf_token %}
+        
+        <table style="width: 100%; border-collapse: collapse; text-align: left; border: 2px solid #000000;">
+            <thead>
+                <tr style="background-color: #93a5d4; text-align: center; border: 2px solid #000000;">
+                    <td style="border: 2px solid #000000;"> </td>
+                    <td style="border: 2px solid #000000;">Study Name</td>
+                    <td style="border: 2px solid #000000;">Study Phase</td>
+                    <td style="border: 2px solid #000000;">Sponsor Name</td>
+                    <td style="border: 2px solid #000000;">Study Description</td>
+                    <td style="border: 2px solid #000000;"></td>
+                    <td style="border: 2px solid #000000;"></td>
+                </tr>
+            </thead>
+            <tbody>
+                {% for study in studies %}
+                <tr>
+                    <td style="padding: 10px; border: 2px solid #000000;"><input type="checkbox" name="study_selection" value="{{ study.id }}"></td>
+                    <td style="padding: 10px; border: 2px solid #000000;">{{ study.study_name }}</td>
+                    <td style="padding: 10px; border: 2px solid #000000;">{{ study.study_phase }}</td>
+                    <td style="padding: 10px; border: 2px solid #000000;">{{ study.sponsor_name }}</td>
+                    <td style="padding: 10px; border: 2px solid #000000;">{{ study.study_description }}</td>
+                    <td style="padding: 10px; background-color: grey; border: 2px solid #000000;"><a href="{% url 'study_view' study.id %}" style="text-decoration: none; color: #d3d3d3;">View</a></td>
+                    <td style="padding: 10px; background-color: grey; border: 2px solid #000000;"><a href="{% url 'study_edit' study.id %}" style="text-decoration: none; color: #d3d3d3;">Edit</a></td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="7" style="text-align: center; border: 2px solid #000000;">No studies available.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <div style="text-align: left; margin-top: 20px;">
+            <a href="{% url 'study_add' %}" style="padding: 5px 90px; background-color: #4473c5; text-decoration: none; color: white; margin-left: 315px;">Add Study</a>
+            <button type="submit" style="padding: 5px 110px; margin-left: 270px; background-color: #4473c5; color: white; border: none;">Delete Study</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

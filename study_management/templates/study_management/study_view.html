@@ -1,0 +1,35 @@
+{% extends 'study_management/base.html' %}
+
+{% block content %}
+<div style="background-color: #93a5d4; padding: 20px; min-height: 100vh;">
+    <h2 style="text-align: center; color: black;">Study Details</h2>
+
+    <div style="max-width: 600px; margin: 0 auto; background-color: #ffffff; padding: 20px; border-radius: 10px; border: 2px solid #000000; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+
+        <div style="display: flex; margin-bottom: 15px;">
+            <label style="font-weight: bold; width: 150px;">Study Name:</label>
+            <p style="margin: 0;">{{ study.study_name }}</p>
+        </div>
+
+        <div style="display: flex; margin-bottom: 15px;">
+            <label style="font-weight: bold; width: 150px;">Study Phase:</label>
+            <p style="margin: 0;">{{ study.study_phase }}</p>
+        </div>
+
+        <div style="display: flex; margin-bottom: 15px;">
+            <label style="font-weight: bold; width: 150px;">Sponsor Name:</label>
+            <p style="margin: 0;">{{ study.sponsor_name }}</p>
+        </div>
+
+        <div style="display: flex; margin-bottom: 15px;">
+            <label style="font-weight: bold; width: 150px;">Study Description:</label>
+            <p style="margin: 0;">{{ study.study_description }}</p>
+        </div>
+
+    </div>
+
+    <div style="text-align: center; margin-top: 20px;">
+        <a href="{% url 'study_list' %}" style="padding: 10px 20px; background-color: #4473c5; color: white; text-decoration: none; border-radius: 5px;">Back to List</a>
+    </div>
+</div>
+{% endblock %}
